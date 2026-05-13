@@ -5,6 +5,7 @@ Static homepage/resume repo.
 ## Pages
 
 - `resume/` — public HTML resume.
+- `resume-elevenlabs-gm/` — tailored resume for ElevenLabs General Manager — Chile.
 
 ## Local preview
 

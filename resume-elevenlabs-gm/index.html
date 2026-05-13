@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ignacio Parada — Resume for ElevenLabs GM Chile</title>
+  <meta name="description" content="Tailored resume of Ignacio Parada for ElevenLabs General Manager - Chile." />
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #1f2933;
+      --muted: #667085;
+      --rule: #d8d2c4;
+      --accent: #7c3aed;
+      --accent-2: #0f766e;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(124,58,237,0.10), transparent 34rem),
+        radial-gradient(circle at 100% 15%, rgba(15,118,110,0.09), transparent 28rem),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    .page {
+      width: min(980px, calc(100% - 32px));
+      margin: 36px auto;
+      background: var(--paper);
+      border: 1px solid rgba(31,41,51,0.10);
+      box-shadow: 0 24px 80px rgba(31,41,51,0.13);
+    }
+
+    .inner { padding: clamp(28px, 5vw, 58px); }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 22px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.25rem, 5.7vw, 4.65rem);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
+      font-weight: 800;
+    }
+
+    .role-target {
+      margin: 14px 0 0;
+      color: var(--accent);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 850;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      margin: 10px 0 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1rem;
+    }
+
+    .contact {
+      text-align: right;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.9rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .contact a { color: var(--ink); text-decoration-color: rgba(124,58,237,0.45); text-underline-offset: 3px; }
+
+    .section {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: clamp(18px, 4vw, 34px);
+      padding: 21px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section:last-child { border-bottom: 0; }
+
+    .section-title {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--accent);
+      padding-top: 4px;
+    }
+
+    .item { margin-bottom: 21px; }
+    .item:last-child { margin-bottom: 0; }
+
+    .item-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    h2, h3 { margin: 0; }
+    h2 {
+      font-size: 1.18rem;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      font-size: 0.98rem;
+      font-weight: 650;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .org-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .org-line .location {
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.88rem;
+    }
+
+    ul { margin: 7px 0 0 1.15rem; padding: 0; }
+    li { margin: 5px 0; }
+
+    .summary-list {
+      margin-top: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .compact-list li { margin: 4px 0; }
+
+    .pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 5px 9px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: rgba(124,58,237,0.045);
+      color: #3d3551;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.84rem;
+    }
+
+    .highlight { color: var(--accent-2); font-weight: 800; }
+    .print-note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .page { margin: 0; width: 100%; border: 0; box-shadow: none; }
+      header, .section { grid-template-columns: 1fr; }
+      .contact { text-align: left; white-space: normal; }
+      .item-head { grid-template-columns: 1fr; gap: 2px; }
+      .meta { white-space: normal; }
+    }
+
+    @media print {
+      body { background: white; }
+      .page { margin: 0; width: 100%; border: 0; box-shadow: none; }
+      .inner { padding: 0.35in; }
+      .print-note { display: none; }
+      a { color: inherit; text-decoration: none; }
+      .section, .item { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="inner">
+      <header>
+        <div>
+          <h1>Ignacio<br />Parada</h1>
+          <p class="role-target">General Manager — Chile · ElevenLabs</p>
+          <p class="tagline">Operator, founder, and engineering leader with 15+ years building technical products, sales motions, and high-performing teams in Chile and global environments. Native Spanish speaker with deep enterprise delivery, AI/cybersecurity, hiring, and go-to-market experience.</p>
+        </div>
+        <address class="contact">
+          Santiago, Chile<br />
+          <a href="mailto:i@ignacioparada.com">i@ignacioparada.com</a><br />
+          <a href="tel:+56998726389">+56 9 9872 6389</a>
+        </address>
+      </header>
+
+      <section class="section" aria-labelledby="fit">
+        <div class="section-title" id="fit">Fit for role</div>
+        <div>
+          <ul class="summary-list">
+            <li><strong>Country-level operator:</strong> founded and scaled Magnet, leading sales, delivery, hiring, HR, and product work for enterprise clients in Chile and LatAm.</li>
+            <li><strong>Sales + technical leadership:</strong> built a 3-person sales team, grew revenue to <span class="highlight">US$1.5M</span>, and led complex enterprise software implementations.</li>
+            <li><strong>AI-first credibility:</strong> MIT thesis and research on cybersecurity for supervised machine learning systems; currently building and teaching in security/AI-adjacent domains.</li>
+            <li><strong>Builder mindset:</strong> led Zerofox’s Attack Surface product from zero to <span class="highlight">US$13M</span> revenue and hired <span class="highlight">60+ engineers</span> across the organization.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="experience">
+        <div class="section-title" id="experience">Experience</div>
+        <div>
+          <article class="item">
+            <div class="item-head">
+              <div>
+                <h2>Zerofox Inc.</h2>
+                <div class="org-line"><h3>Software Engineering Manager</h3><span class="location">Chile / Global</span></div>
+              </div>
+              <div class="meta">2022 – Present</div>
+            </div>
+            <ul>
+              <li>Led multiple engineering teams across five time zones, including Impersonations, Data Platform, and Attack Surface.</li>
+              <li>Led creation of Zerofox’s Attack Surface product from scratch, reaching <span class="highlight">US$13M</span> in revenue.</li>
+              <li>Served as Hiring Lead for Engineering across the organization, improving hiring efficiency while hiring <span class="highlight">60+ engineers</span>.</li>
+              <li>Mentored and grew future engineering leaders, doubling their number inside the company.</li>
+            </ul>
+          </article>
+
+          <article class="item">
+            <div class="item-head">
+              <div>
+                <h2>Magnet</h2>
+                <div class="org-line"><h3>CEO & Founder</h3><span class="location">Chile</span></div>
+              </div>
+              <div class="meta">2012 – 2020</div>
+            </div>
+            <ul>
+              <li>Founded and led a 40-person boutique software development company serving enterprise clients in Chile and Latin America.</li>
+              <li>Recruited and led a three-person sales team, growing company revenue to <span class="highlight">US$1.5M</span> in five years.</li>
+              <li>Created the HR department from scratch, improving average retention from two to four years.</li>
+              <li>Acted as Product Manager for a cash flow management platform implemented internally and as a SaaS product.</li>
+              <li>Led enterprise software projects for LATAM Airlines, Chilean immigration processes, major retail warehousing, and infrastructure ERP.</li>
+            </ul>
+          </article>
+
+          <article class="item">
+            <div class="item-head">
+              <div>
+                <h2>Pontificia Universidad Católica de Chile, School of Engineering</h2>
+                <div class="org-line"><h3>Adjunct Professor</h3><span class="location">Chile</span></div>
+              </div>
+              <div class="meta">2025 – Present</div>
+            </div>
+            <ul><li>Created and taught “Computer Security”, including syllabus, course structure, homework, and supporting materials.</li></ul>
+          </article>
+
+          <article class="item">
+            <div class="item-head">
+              <div>
+                <h2>Cybersecurity at MIT Sloan (CAMS)</h2>
+                <div class="org-line"><h3>Research Assistant</h3><span class="location">Cambridge, MA</span></div>
+              </div>
+              <div class="meta">2021 – 2022</div>
+            </div>
+            <ul><li>Researched cybersecurity for AI systems and published at the Future of Information and Communication Conference.</li></ul>
+          </article>
+
+          <article class="item">
+            <div class="item-head">
+              <div>
+                <h2>Universidad de los Andes, School of Engineering</h2>
+                <div class="org-line"><h3>Adjunct Professor</h3><span class="location">Chile</span></div>
+              </div>
+              <div class="meta">2013 – 2021</div>
+            </div>
+            <ul><li>Taught Software Engineering and Data Structures to more than <span class="highlight">500 students</span> over eight years.</li></ul>
+          </article>
+
+          <article class="item">
+            <div class="item-head">
+              <div>
+                <h2>Hadza</h2>
+                <div class="org-line"><h3>CTO & Co-Founder</h3><span class="location">Chile</span></div>
+              </div>
+              <div class="meta">2011 – 2012</div>
+            </div>
+            <ul>
+              <li>Led technical execution while raising a <span class="highlight">US$250K</span> seed round at a <span class="highlight">US$4M</span> valuation.</li>
+              <li>Recruited and led a 10-person team building backend and mobile apps with patented video synchronization technology.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="education">
+        <div class="section-title" id="education">Education</div>
+        <div>
+          <article class="item">
+            <div class="item-head">
+              <div>
+                <h2>Massachusetts Institute of Technology</h2>
+                <div class="org-line"><h3>M.S., Engineering and Management · SDM Fellow · Legatum Fellow</h3><span class="location">Cambridge, MA</span></div>
+              </div>
+              <div class="meta">2020 – 2022</div>
+            </div>
+            <ul>
+              <li>Thesis: “A Systems Theory Approach to Cybersecuring a Supervised Machine Learning System”.</li>
+              <li>Student Senator at MIT Sloan representing 200 SDM students; Graduate Certificate in Technical Leadership.</li>
+              <li>Relevant coursework: Distributed Systems, Computer Systems Security, Leading Creative Teams.</li>
+            </ul>
+          </article>
+
+          <article class="item">
+            <div class="item-head">
+              <div>
+                <h2>Pontificia Universidad Católica de Chile</h2>
+                <div class="org-line"><h3>B.S., Software Engineering</h3><span class="location">Chile</span></div>
+              </div>
+              <div class="meta">2004 – 2010</div>
+            </div>
+            <ul>
+              <li>Teaching Assistant for Software Engineering, Computer Architectures Lab, Computer Networks, and related courses.</li>
+              <li>Exchange student at the Technical University of Denmark.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="additional">
+        <div class="section-title" id="additional">Additional</div>
+        <div>
+          <ul class="compact-list">
+            <li><strong>Languages:</strong> Spanish native; English fluent; Italian limited working proficiency.</li>
+            <li><strong>Technical skills:</strong> Java, Python, C#, Golang, Android SDK.</li>
+            <li><strong>Volunteer leadership:</strong> Co-founder and president of MITI; Board Member at Chiletec.</li>
+            <li><strong>Leadership program:</strong> Georgetown Global Competitiveness Leadership alumnus.</li>
+          </ul>
+          <div class="pill-grid" aria-label="Role themes">
+            <span class="pill">Country strategy</span>
+            <span class="pill">Enterprise sales</span>
+            <span class="pill">Technical delivery</span>
+            <span class="pill">Hiring</span>
+            <span class="pill">AI systems</span>
+            <span class="pill">Founder/operator</span>
+          </div>
+        </div>
+      </section>
+
+      <p class="print-note">Tailored version for ElevenLabs General Manager — Chile.</p>
+    </div>
+  </main>
+</body>
+</html>
