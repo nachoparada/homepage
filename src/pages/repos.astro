@@ -33,12 +33,60 @@ const repos = [
 			"Lab material and supporting code for the 2025-02 edition of IIC2531, including hands-on security assignments and tooling.",
 	},
 	{
-		name: "openclaw-ansible",
-		visibility: "Public",
-		url: "https://github.com/nachoparada/openclaw-ansible",
-		stack: "Shell · Ansible · Jinja",
+		name: "AccountingFlowSlides",
+		visibility: "Private",
+		url: null,
+		stack: "Reveal.js · HTML · Spanish decks",
 		description:
-			"Automated, hardened OpenClaw installation with Tailscale VPN, UFW firewall, Docker isolation, and multi-OS deployment support.",
+			"Private static slide decks for AccountingFlow, including co-founder, sales, investor, and customer-demo presentation material.",
+	},
+	{
+		name: "FamilyFlowDocs",
+		visibility: "Private",
+		url: null,
+		stack: "Documentation · Architecture",
+		description:
+			"Private canonical documentation for FamilyFlow, the Couples Concierge ecosystem, covering architecture, system responsibilities, operational decisions, diagrams, and runbooks.",
+	},
+	{
+		name: "family-flow-agent-deploy",
+		visibility: "Private",
+		url: null,
+		stack: "Deployment automation · OpenClaw",
+		description:
+			"Private deployment and maintenance automation for FamilyFlow agents, used to provision, configure, update, reset, and maintain OpenClaw-based agent hosts.",
+	},
+	{
+		name: "family-flow-agents",
+		visibility: "Private",
+		url: null,
+		stack: "Agent definitions · Bootstrap files",
+		description:
+			"Private source of truth for reusable FamilyFlow agent behavior, bootstrap files, operating files, and supporting directives.",
+	},
+	{
+		name: "familyflow-auth-server",
+		visibility: "Private",
+		url: null,
+		stack: "Google OAuth · Token brokerage",
+		description:
+			"Private Google authentication and token-broker service for FamilyFlow household agents, including OAuth flows, encrypted refresh-token storage, short-lived access tokens, and audit events.",
+	},
+	{
+		name: "disc-mods",
+		visibility: "Private",
+		url: null,
+		stack: "OpenClaw · Agent skills · Security validation",
+		description:
+			"Private extended-skill modules for sandboxed agents in The Grid, enabling privileged operations through validated, security-aware disc-mod packages.",
+	},
+	{
+		name: "io-tower",
+		visibility: "Private",
+		url: null,
+		stack: "Chrome Extension · Browser automation",
+		description:
+			"Private OpenClaw browser relay extension that connects a browser to OpenClaw Gateway for remote AI-powered navigation, clicking, typing, and extraction.",
 	},
 	{
 		name: "nexus",
@@ -46,7 +94,23 @@ const repos = [
 		url: null,
 		stack: "Python · HTML · Shell",
 		description:
-			"A private multi-server management system for OpenClaw deployments, used to monitor servers, collect configuration, track agents and disc-mods, and coordinate deployments.",
+			"Private multi-server management system for OpenClaw deployments, used to monitor servers, collect configuration, track agents and disc-mods, and coordinate deployments.",
+	},
+	{
+		name: "the-grid",
+		visibility: "Private",
+		url: null,
+		stack: "Ansible · OpenClaw · Infrastructure",
+		description:
+			"Private Ansible deployment system for OpenClaw: automated, hardened host setup with security posture, service configuration, and operational automation.",
+	},
+	{
+		name: "openclaw-ansible",
+		visibility: "Public",
+		url: "https://github.com/nachoparada/openclaw-ansible",
+		stack: "Shell · Ansible · Jinja",
+		description:
+			"Automated, hardened OpenClaw installation with Tailscale VPN, UFW firewall, Docker isolation, and multi-OS deployment support.",
 	},
 ];
 ---
