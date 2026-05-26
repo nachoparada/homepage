@@ -1,0 +1,25 @@
+---
+import CVPage from "../components/CVPage.astro";
+import { cv } from "../content/cv";
+
+const content = {
+	...cv.es,
+	noindex: true,
+	altPath: "/cv-anci-2026/",
+	standardizedTests: {
+		title: "Inglés / Pruebas estandarizadas",
+		items: [
+			{
+				label: "GRE Verbal Reasoning:",
+				text: "167/170, percentil 98.",
+			},
+			{
+				label: "TOEFL iBT:",
+				text: "115/120 total — Reading 30/30, Listening 30/30, Speaking 29/30, Writing 26/30.",
+			},
+		],
+	},
+};
+---
+
+<CVPage content={content} />
