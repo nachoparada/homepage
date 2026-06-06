@@ -20,12 +20,12 @@ const experienceEs = [
 ];
 
 const academicEn = [
-	{ organization: "Pontificia Universidad Católica de Chile, School of Engineering", location: "Chile", context: "University", role: "Adjunct Professor", period: "2025 – Present", items: ["Created and taught Computer Security, including syllabus, class structure, homework, and course materials."] },
-	{ organization: "Universidad de los Andes, School of Engineering", location: "Chile", context: "University", role: "Adjunct Professor", period: "2013 – 2021", items: ["Taught Software Engineering and Data Structures to more than 500 students over eight years."] },
+	{ organization: "Pontificia Universidad Católica de Chile, School of Engineering", location: "Chile", context: "University", role: "Adjunct Professor", period: "2025 – Present", items: ["Created and teach Computer Security, a cybersecurity course covering core security principles and applied defensive techniques."] },
+	{ organization: "Universidad de los Andes, School of Engineering", location: "Chile", context: "University", role: "Adjunct Professor", period: "2013 – 2021", items: ["Taught Software Engineering and Data Structures to 500+ engineering students over eight years."] },
 ];
 const academicEs = [
-	{ organization: "Pontificia Universidad Católica de Chile, Escuela de Ingeniería", location: "Chile", context: "Universidad", role: "Profesor adjunto", period: "2025 – Presente", items: ["Creé y dicté Seguridad Computacional, incluyendo programa, estructura del curso, tareas y materiales."] },
-	{ organization: "Universidad de los Andes, Escuela de Ingeniería", location: "Chile", context: "Universidad", role: "Profesor adjunto", period: "2013 – 2021", items: ["Dicté Ingeniería de Software y Estructuras de Datos a más de 500 estudiantes durante ocho años."] },
+	{ organization: "Pontificia Universidad Católica de Chile, Escuela de Ingeniería", location: "Chile", context: "Universidad", role: "Profesor adjunto", period: "2025 – Presente", items: ["Creé y dicto Seguridad Computacional, un curso de ciberseguridad sobre principios fundamentales de seguridad y técnicas defensivas aplicadas."] },
+	{ organization: "Universidad de los Andes, Escuela de Ingeniería", location: "Chile", context: "Universidad", role: "Profesor adjunto", period: "2013 – 2021", items: ["Dicté Ingeniería de Software y Estructuras de Datos a 500+ estudiantes de ingeniería durante ocho años."] },
 ];
 
 const leadershipEn = [
