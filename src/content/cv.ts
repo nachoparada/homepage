@@ -24,14 +24,14 @@ const experienceEs = [
 ];
 
 const leadershipEn = [
-	{ organization: "MITI", location: "Chile", context: "Technology industry association", role: "President", period: "2017 – 2019", items: [] },
-	{ organization: "Chiletec", location: "Chile", context: "Association of Chilean technology companies", role: "Board Member", period: "2019 – 2021", items: [] },
-	{ organization: "MIT Alumni Chile", location: "Chile", context: "MIT alumni association in Chile", role: "Board Member", period: "2024 – Present", items: [] },
+	{ organization: "MITI", location: "Chile", context: "Technology industry association", role: "President", period: "2017 – 2019", items: ["Expanded the organization’s membership base by bringing in new technology companies and strengthening its industry network."] },
+	{ organization: "Chiletec", location: "Chile", context: "Association of Chilean technology companies", role: "Board Member", period: "2019 – 2021", items: ["Worked closely with Chile’s Digital Government Division to improve conditions for software development and digital transformation in the public sector."] },
+	{ organization: "MIT Alumni Chile", location: "Chile", context: "MIT alumni association in Chile", role: "Board Member", period: "2024 – Present", items: ["Supported outreach to newly admitted MIT students from Chile and helped organize events that strengthened interaction across the local alumni community."] },
 ];
 const leadershipEs = [
-	{ organization: "MITI", location: "Chile", context: "Asociación gremial de empresas de tecnología", role: "Presidente", period: "2017 – 2019", items: [] },
-	{ organization: "Chiletec", location: "Chile", context: "Asociación de Empresas Chilenas de Tecnología", role: "Director", period: "2019 – 2021", items: [] },
-	{ organization: "MIT Alumni Chile", location: "Chile", context: "Asociación de exalumnos del MIT en Chile", role: "Director", period: "2024 – Presente", items: [] },
+	{ organization: "MITI", location: "Chile", context: "Asociación gremial de empresas de tecnología", role: "Presidente", period: "2017 – 2019", items: ["Expandí la base de socios de la organización incorporando nuevas empresas tecnológicas y fortaleciendo su red dentro de la industria."] },
+	{ organization: "Chiletec", location: "Chile", context: "Asociación de Empresas Chilenas de Tecnología", role: "Director", period: "2019 – 2021", items: ["Trabajé de cerca con la Dirección de Gobierno Digital para mejorar las condiciones para el desarrollo de software y la transformación digital en el sector público."] },
+	{ organization: "MIT Alumni Chile", location: "Chile", context: "Asociación de exalumnos del MIT en Chile", role: "Director", period: "2024 – Presente", items: ["Apoyé actividades de acercamiento a nuevos estudiantes chilenos admitidos en MIT y ayudé a organizar eventos para fortalecer la interacción de la comunidad local de exalumnos."] },
 ];
 
 export const cv = {
