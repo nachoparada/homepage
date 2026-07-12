@@ -1,0 +1,260 @@
+---
+import { readFileSync } from "node:fs";
+
+const rubricPath = "/repos/IIC2531-evals/2026-1/labs/lab05/lab05-rubric.md";
+const markdown = readFileSync(rubricPath, "utf8");
+
+function escapeHtml(value: string) {
+	return value
+		.replaceAll("&", "&amp;")
+		.replaceAll("<", "&lt;")
+		.replaceAll(">", "&gt;")
+		.replaceAll('"', "&quot;");
+}
+
+function inlineMarkdown(value: string) {
+	return escapeHtml(value)
+		.replace(/`([^`]+)`/g, "<code>$1</code>")
+		.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+}
+
+function isTableSeparator(line: string) {
+	return /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(line.trim());
+}
+
+function splitTableRow(line: string) {
+	return line
+		.trim()
+		.replace(/^\|/, "")
+		.replace(/\|$/, "")
+		.split("|")
+		.map((cell) => cell.trim());
+}
+
+function markdownToHtml(source: string) {
+	const lines = source.split(/\r?\n/);
+	const html: string[] = [];
+	let paragraph: string[] = [];
+	let inOrderedList = false;
+	let inUnorderedList = false;
+	let inCodeBlock = false;
+	let codeBlock: string[] = [];
+
+	const flushParagraph = () => {
+		if (!paragraph.length) return;
+		html.push(`<p>${inlineMarkdown(paragraph.join(" "))}</p>`);
+		paragraph = [];
+	};
+
+	const closeLists = () => {
+		if (inOrderedList) {
+			html.push("</ol>");
+			inOrderedList = false;
+		}
+		if (inUnorderedList) {
+			html.push("</ul>");
+			inUnorderedList = false;
+		}
+	};
+
+	for (let i = 0; i < lines.length; i++) {
+		const rawLine = lines[i];
+		const line = rawLine.trim();
+
+		if (line.startsWith("```")) {
+			flushParagraph();
+			closeLists();
+			if (inCodeBlock) {
+				html.push(`<pre><code>${escapeHtml(codeBlock.join("\n"))}</code></pre>`);
+				codeBlock = [];
+				inCodeBlock = false;
+			} else {
+				inCodeBlock = true;
+			}
+			continue;
+		}
+
+		if (inCodeBlock) {
+			codeBlock.push(rawLine);
+			continue;
+		}
+
+		if (line.includes("|") && lines[i + 1] && isTableSeparator(lines[i + 1])) {
+			flushParagraph();
+			closeLists();
+			const headers = splitTableRow(line);
+			i += 2;
+			const rows: string[][] = [];
+			while (i < lines.length && lines[i].trim().includes("|")) {
+				rows.push(splitTableRow(lines[i]));
+				i++;
+			}
+			i--;
+			html.push("<table>");
+			html.push(`<thead><tr>${headers.map((cell) => `<th>${inlineMarkdown(cell)}</th>`).join("")}</tr></thead>`);
+			html.push("<tbody>");
+			for (const row of rows) {
+				html.push(`<tr>${row.map((cell) => `<td>${inlineMarkdown(cell)}</td>`).join("")}</tr>`);
+			}
+			html.push("</tbody></table>");
+			continue;
+		}
+
+		if (!line) {
+			flushParagraph();
+			closeLists();
+			continue;
+		}
+
+		if (/^-{3,}$/.test(line)) {
+			flushParagraph();
+			closeLists();
+			html.push("<hr />");
+			continue;
+		}
+
+		const heading = /^(#{1,6})\s+(.+)$/.exec(line);
+		if (heading) {
+			flushParagraph();
+			closeLists();
+			const depth = Math.min(heading[1].length, 4);
+			html.push(`<h${depth}>${inlineMarkdown(heading[2])}</h${depth}>`);
+			continue;
+		}
+
+		const numbered = /^\d+\.\s+(.+)$/.exec(line);
+		if (numbered) {
+			flushParagraph();
+			if (inUnorderedList) {
+				html.push("</ul>");
+				inUnorderedList = false;
+			}
+			if (!inOrderedList) {
+				html.push("<ol>");
+				inOrderedList = true;
+			}
+			html.push(`<li>${inlineMarkdown(numbered[1])}</li>`);
+			continue;
+		}
+
+		const bullet = /^-\s+(.+)$/.exec(line);
+		if (bullet) {
+			flushParagraph();
+			if (inOrderedList) {
+				html.push("</ol>");
+				inOrderedList = false;
+			}
+			if (!inUnorderedList) {
+				html.push("<ul>");
+				inUnorderedList = true;
+			}
+			html.push(`<li>${inlineMarkdown(bullet[1])}</li>`);
+			continue;
+		}
+
+		if (inOrderedList || inUnorderedList) {
+			html.push(inlineMarkdown(line));
+			continue;
+		}
+
+		paragraph.push(line);
+	}
+
+	flushParagraph();
+	closeLists();
+	if (inCodeBlock) {
+		html.push(`<pre><code>${escapeHtml(codeBlock.join("\n"))}</code></pre>`);
+	}
+	return html.join("\n");
+}
+
+const rubricHtml = markdownToHtml(markdown);
+---
+
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" href="/favicon.ico" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="robots" content="noindex, nofollow" />
+	<meta name="description" content="Rúbrica imprimible del Laboratorio 5 de Seguridad Computacional." />
+	<title>Laboratorio 5 · Rúbrica · Seguridad Computacional</title>
+	<style>
+		:root { font-family: Georgia, "Times New Roman", serif; color: #111; background: #ece9e1; }
+		* { box-sizing: border-box; }
+		body { margin: 0; padding: 32px 18px; background: #ece9e1; }
+		a { color: inherit; }
+		.sheet { max-width: 960px; margin: 0 auto; padding: 48px 62px 54px; background: #fffefa; box-shadow: 0 22px 70px rgba(30, 26, 16, .14); }
+		.toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 26px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: .84rem; color: #555; }
+		.print-button { border: 1px solid #111; background: transparent; padding: 8px 11px; font: inherit; cursor: pointer; }
+		.exam-header { display: grid; grid-template-columns: 86px 1fr 86px; align-items: center; gap: 18px; border-bottom: 2px solid #111; padding-bottom: 18px; margin-bottom: 24px; }
+		.crest { width: 58px; height: auto; justify-self: start; }
+		.heading { text-align: center; }
+		.university { margin: 0 0 8px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; }
+		h1 { margin: 0 0 8px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 1.58rem; letter-spacing: .02em; text-transform: uppercase; }
+		h2 { margin: 0 0 8px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 1.12rem; letter-spacing: .12em; text-transform: uppercase; }
+		.date { margin: 0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: .86rem; }
+		.rubric :global(h1) { margin: 0 0 16px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 1.2rem; line-height: 1.35; text-align: center; }
+		.rubric :global(h2) { break-after: avoid; margin: 30px 0 12px; border-top: 1px solid #c9c3b8; padding-top: 16px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 1.04rem; line-height: 1.35; }
+		.rubric :global(h3) { break-after: avoid; margin: 22px 0 8px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: .98rem; line-height: 1.35; }
+		.rubric :global(p) { margin: 9px 0; font-size: .98rem; line-height: 1.48; }
+		.rubric :global(ol), .rubric :global(ul) { margin: 10px 0 0 24px; padding: 0; }
+		.rubric :global(li) { break-inside: avoid; margin: 7px 0; padding-left: 4px; line-height: 1.45; }
+		.rubric :global(table) { width: 100%; margin: 14px 0 18px; border-collapse: collapse; font-size: .9rem; line-height: 1.35; break-inside: avoid; }
+		.rubric :global(th), .rubric :global(td) { border: 1px solid #d7d0c4; padding: 7px 8px; vertical-align: top; }
+		.rubric :global(th) { background: #f3f0e8; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: .82rem; text-align: left; }
+		.rubric :global(code) { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: .9em; background: #f3f0e8; padding: 0 .18em; }
+		.rubric :global(pre) { margin: 12px 0; padding: 12px 14px; overflow-x: auto; background: #f3f0e8; border: 1px solid #ddd6ca; }
+		.rubric :global(pre code) { padding: 0; background: transparent; }
+		.rubric :global(hr) { border: 0; border-top: 1px solid #d6d0c4; margin: 22px 0; }
+		@page { size: letter; margin: .58in .62in; }
+		@media print {
+			:root, body { background: white; }
+			body { padding: 0; }
+			.sheet { max-width: none; padding: 0; box-shadow: none; }
+			.toolbar { display: none; }
+			.exam-header { grid-template-columns: 62px 1fr 62px; gap: 12px; margin-bottom: 18px; padding-bottom: 13px; }
+			.crest { width: 46px; }
+			.university { font-size: .62rem; margin-bottom: 5px; }
+			h1 { font-size: 1.34rem; margin-bottom: 5px; }
+			h2 { font-size: .92rem; margin-bottom: 5px; }
+			.date { font-size: .78rem; }
+			.rubric :global(h1) { font-size: 1rem; margin-bottom: 12px; }
+			.rubric :global(h2) { margin-top: 20px; padding-top: 12px; font-size: .96rem; }
+			.rubric :global(h3) { margin-top: 16px; font-size: .92rem; }
+			.rubric :global(p), .rubric :global(li) { font-size: .9rem; line-height: 1.34; }
+			.rubric :global(table) { font-size: .78rem; }
+			.rubric :global(th), .rubric :global(td) { padding: 5px 6px; }
+		}
+		@media (max-width: 700px) {
+			body { padding: 0; }
+			.sheet { padding: 28px 18px; box-shadow: none; }
+			.toolbar { align-items: flex-start; flex-direction: column; }
+			.exam-header { grid-template-columns: 54px 1fr; }
+			.exam-header::after { display: none; }
+			.crest { width: 46px; }
+			h1 { font-size: 1.34rem; }
+			.rubric :global(table) { display: block; overflow-x: auto; }
+		}
+	</style>
+</head>
+<body>
+	<main class="sheet">
+		<div class="toolbar">
+			<a href="/">Ignacio Parada</a>
+			<button class="print-button" type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
+		</div>
+		<header class="exam-header">
+			<img class="crest" src="/images/uc-crest.svg" alt="Escudo de la Pontificia Universidad Católica de Chile" />
+			<div class="heading">
+				<p class="university">Pontificia Universidad Católica de Chile</p>
+				<h1>IIC2531 · Seguridad Computacional</h1>
+				<h2>Laboratorio 5 · Rúbrica</h2>
+				<p class="date">Segundo semestre 2026</p>
+			</div>
+		</header>
+		<article class="rubric" set:html={rubricHtml} />
+	</main>
+</body>
+</html>
